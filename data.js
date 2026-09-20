@@ -9,8 +9,8 @@ const SITE = {
     bio: "Everything will perfect if you hard work",
     photo: "assets/foto.png",
     stats: {
-    followers: 12500,
-    following: 180,
+    followers: 350000,
+    following: 0,
     },
   },
 
