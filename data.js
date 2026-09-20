@@ -8,6 +8,10 @@ const SITE = {
     postTitle: "Creator",
     bio: "Everything will perfect if you hard work",
     photo: "assets/foto.png",
+    stats: {
+    followers: 12500,
+    following: 180,
+    },
   },
 
   /* ---------- Tombol HIRE dan PARTNERSHIP ---------- */
