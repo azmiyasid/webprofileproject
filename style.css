@@ -99,6 +99,7 @@ h1, p { margin: 0; }
   grid-template-columns: 88px minmax(0, 1fr);
   grid-template-areas:
     "photo info"
+    "stats stats"
     "bio bio"
     "actions actions";
   gap: 12px 16px;
@@ -119,6 +120,25 @@ h1, p { margin: 0; }
   overflow-wrap: anywhere;
 }
 
+.profile__stats {
+  grid-area: stats;
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.profile__stats strong { display: block; font-size: 1.15rem; }
+.profile__stats span { color: var(--muted); font-size: .85rem; }
+
+@media (min-width: 720px) {
+  .profile__stats { justify-content: flex-start; gap: 40px; text-align: left; }
+  .profile__stats strong { display: inline; margin-right: .3em; font-size: 1.2rem; }
+  .profile__stats span { color: var(--ink); font-size: 1.05rem; }
+}
+
 .profile__title {
   margin-top: 2px;
   color: var(--muted);
@@ -137,6 +157,7 @@ h1, p { margin: 0; }
     grid-template-columns: clamp(160px, 20vw, 240px) minmax(0, 1fr);
     grid-template-areas:
       "photo info"
+      "photo stats"
       "photo bio"
       "photo actions";
     column-gap: clamp(28px, 5vw, 64px);
@@ -145,7 +166,7 @@ h1, p { margin: 0; }
     padding: 12px 0 28px;
   }
   .profile__photo { align-self: center; }
-  .profile__info, .profile__bio, .profile__actions { align-self: start; }
+  .profile__info, profile__stats, .profile__bio, .profile__actions { align-self: start; }
   .profile__bio { font-size: 1.1rem; }
   .profile__actions { gap: 16px; margin-top: 6px; }
   .profile__actions .btn { flex: 0 0 auto; min-width: 160px; }
