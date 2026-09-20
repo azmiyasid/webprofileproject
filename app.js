@@ -71,6 +71,37 @@
     return span;
   }
 
+  function formatCount(n) {
+  if (typeof n === "string") return n;
+  return new Intl.NumberFormat("id-ID", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(n);
+}
+
+function totalPosts() {
+  return TABS.reduce(
+    (sum, t) => sum + ((SITE.posts && SITE.posts[t.key]) || []).length,
+    0
+  );
+}
+
+function statsEl() {
+  const s = SITE.profile.stats || {};
+  const items = [
+    { value: totalPosts(), label: "Post" },
+    { value: s.followers ?? 0, label: "Followers" },
+    { value: s.following ?? 0, label: "Following" },
+  ];
+  return el(
+    "ul",
+    { class: "profile__stats" },
+    items.map((i) =>
+      el("li", null, el("strong", { text: formatCount(i.value) }), el("span", { text: i.label }))
+    )
+  );
+}
+  
   const SPLIT = /(\*\*[^*\s][^*]*\*\*|__[^_\s][^_]*__|~~[^~\s][^~]*~~|\*[^*\s][^*]*\*)/g;
 const RULES = [
   { re: /^\*\*([^*\s][^*]*)\*\*$/, tag: "strong" },
@@ -236,6 +267,7 @@ function richText(text) {
         el("h1", { class: "profile__name" }, p.name, p.verified ? badge() : null),
         el("p", { class: "profile__title", text: p.title })
       ),
+      statsEl(),
       el("p", { class: "profile__bio", text: p.bio }),
       el(
         "div",
